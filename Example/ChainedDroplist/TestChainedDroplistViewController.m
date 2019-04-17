@@ -52,15 +52,23 @@
 #pragma mark - Tap Action
 - (void)tapBtn:(UIButton *)btn
 {
-    [self showDroplist:btn];
+    UIView *iconImg = [btn viewWithTag:100];
+    [self showDroplist:btn icon:iconImg hostView:self.view];
 }
 
-- (void)showDroplist:(UIView *)baseView
+- (void)tapBtnInHostView:(UIButton *)btn
+{
+    UIView *hostView = btn.superview == self.topHostView ? self.topHostView : self.bottomHostView;
+    [self showDroplist:btn icon:nil hostView:hostView];
+    
+}
+
+- (void)showDroplist:(UIView *)baseView icon:(UIView *)icon hostView:(UIView *)hostView
 {
     [[[[[ChainedDroplistView alloc] initWithConfig:^(ChainedDroplistView *droplist) {
         droplist.hostView = self.view;
         droplist.baseView = baseView;
-        droplist.rotationView = nil;
+        droplist.rotationView = icon;
         /* droplist.cellHeight = 60; use default height */
         droplist.dataSource = [self createDataSourceWithDatas:[self createTestDatas]];
     }] registCustomerCellsWithConfig:^(UITableView *tableView) {
@@ -74,6 +82,7 @@
     
 }
 
+
 #pragma mark - Lazy load
 - (UIButton *)topBtn
 {
@@ -84,6 +93,14 @@
         [_topBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
         _topBtn.titleLabel.font = [UIFont systemFontOfSize:16];
         [_topBtn addTarget:self action:@selector(tapBtn:) forControlEvents:(UIControlEventTouchUpInside)];
+        
+        UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"droplistTestIcon_down"]];
+        icon.tag = 100;
+        [_topBtn addSubview:icon];
+        [icon mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(_topBtn);
+            make.right.mas_equalTo(_topBtn).offset(-20);
+        }];
     }
     
     return _topBtn;
@@ -98,6 +115,14 @@
         [_bottomBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
         _bottomBtn.titleLabel.font = [UIFont systemFontOfSize:16];
         [_bottomBtn addTarget:self action:@selector(tapBtn:) forControlEvents:(UIControlEventTouchUpInside)];
+        
+        UIImageView *icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"droplistTestIcon_up"]];
+        icon.tag = 100;
+        [_bottomBtn addSubview:icon];
+        [icon mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(_bottomBtn);
+            make.right.mas_equalTo(_bottomBtn).offset(-20);
+        }];
     }
     
     return _bottomBtn;
@@ -108,6 +133,24 @@
     if (!_topHostView) {
         _topHostView = [UIView new];
         _topHostView.backgroundColor = [UIColor whiteColor];
+        
+        UIButton *subBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        subBtn.backgroundColor = [UIColor blueColor];
+        [subBtn setTitle:@"Droplist will auto adjust visible cell count" forState:(UIControlStateNormal)];
+        [subBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+        subBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        /*
+         in this case you will see if the space between hostView&baseView is less than 5 cells' height, the droplist will decrease the visible quantity automatically until the cells can be shown in the space between
+         */
+        [subBtn addTarget:self action:@selector(tapBtnInHostView:) forControlEvents:(UIControlEventTouchUpInside)];
+        
+        [_topHostView addSubview:subBtn];
+        [subBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(_topHostView);
+            make.height.mas_equalTo(60);
+            make.width.mas_equalTo(_topHostView).offset(-10);
+            make.top.mas_equalTo(_topHostView).offset(30);
+        }];
     }
     
     return _topHostView;
@@ -118,6 +161,8 @@
     if (!_bottomHostView) {
         _bottomHostView = UIView.new;
         _bottomHostView.backgroundColor = [UIColor whiteColor];
+        
+        // TODO: Add custom cells
     }
     return _bottomHostView;
 }

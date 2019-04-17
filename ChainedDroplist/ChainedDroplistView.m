@@ -35,15 +35,6 @@ NSInteger const kChainedDroplistViewTag = 111;
     CDLebugLog(@"[%@] dealloc", self);
 }
 
-- (void)willMoveToSuperview:(UIView *)newSuperview
-{
-    if (newSuperview) {
-        return;
-    }
-    
-    [self dismiss];
-}
-
 #pragma mark - Public Api
 
 - (instancetype)initWithConfig:(void(^)(ChainedDroplistView *droplist))config
@@ -152,10 +143,14 @@ NSInteger const kChainedDroplistViewTag = 111;
         make.left.mas_equalTo(self).offset(baseViewOrigin.x);
         switch (self.droplistDirection) {
             case EChainedDroplistViewDirectionUp:
-                make.bottom.mas_equalTo(self.baseView.mas_top).offset(baseViewOrigin.y);
+//                make.bottom.mas_equalTo(self.baseView.mas_top).offset(baseViewOrigin.y);
+                make.bottom.mas_equalTo(self.baseView.mas_top);
+
                 break;
             case EChainedDroplistViewDirectionDown:
-                make.top.mas_equalTo(self).offset(baseViewOrigin.y+CGRectGetHeight(self.baseView.frame));
+//                make.top.mas_equalTo(self).offset(baseViewOrigin.y+CGRectGetHeight(self.baseView.frame));
+                make.top.mas_equalTo(self.baseView.mas_bottom);
+
                 break;
             case EChainedDroplistViewDirectionNone:
                 break;
