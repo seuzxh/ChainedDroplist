@@ -1,0 +1,6 @@
+framework module LRNotificationObserver {
+  umbrella header "LRNotificationObserver-umbrella.h"
+
+  export *
+  module * { export * }
+}
