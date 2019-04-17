@@ -1,6 +1,0 @@
-framework module ChainedDroplist {
-  umbrella header "ChainedDroplist-umbrella.h"
-
-  export *
-  module * { export * }
-}
