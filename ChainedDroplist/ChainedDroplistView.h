@@ -3,7 +3,7 @@
 //  ChainedDroplist
 //
 //  Created by seuzxh@163.com on 2017/11/29.
-//  下拉列表 droplist tableview 实例
+//  Droplist with UITableView
 
 #import <UIKit/UIKit.h>
 #import "ChainedDroplistDef.h"

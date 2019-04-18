@@ -3,7 +3,7 @@
 //  ChainedDroplist
 //
 //  Created by seuzxh@163.com on 2017/11/29.
-//  交易 droplist table view 使用的 datasource
+//  Datasource used for chain UITableView
 
 #import <Foundation/Foundation.h>
 
