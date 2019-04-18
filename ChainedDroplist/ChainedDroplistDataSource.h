@@ -11,8 +11,12 @@
 @interface ChainedDroplistDataSource : NSObject <UITableViewDataSource>
 
 /**
- 初始化 datasource 的数组
+ init UITableView DataSource
+
+ @param datas Datas list used for datasource
+ @return datasource instance
  */
-@property (nonatomic, strong) NSArray <id<ChainedDroplistModelProtocol>> *cellDatas;
+- (instancetype)initWithDatas:(NSArray <id<ChainedDroplistModelProtocol>> *)datas;
+
 
 @end

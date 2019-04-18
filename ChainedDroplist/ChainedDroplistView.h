@@ -39,9 +39,10 @@
 @property (nonatomic, weak)   UIView *hostView;
 
 /**
- 用于设置 UITableView 的 datasource
+ Datas used for init UITableView datasource
  */
-@property (nonatomic, strong) ChainedDroplistDataSource *dataSource;
+@property (nonatomic, strong) NSArray <id<ChainedDroplistModelProtocol>> *datas;
+
 
 /**
  用于设置droplist 展示方向：向上 向下

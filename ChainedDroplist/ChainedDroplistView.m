@@ -23,6 +23,8 @@ NSInteger const kChainedDroplistViewTag = 111;
 @property (nonatomic, strong) UIView *bottomShadowView;
 @property (nonatomic, strong) UITableView *tableView;
 
+@property (nonatomic, strong) ChainedDroplistDataSource *dataSource;
+
 @end
 
 @implementation ChainedDroplistView
@@ -45,6 +47,7 @@ NSInteger const kChainedDroplistViewTag = 111;
             config(self);
         }
         
+        self.dataSource = [[ChainedDroplistDataSource alloc] initWithDatas:self.datas];
         if ( self.droplistDirection == EChainedDroplistViewDirectionNone ) {
             [self calculateDirection];
         }
@@ -242,7 +245,7 @@ NSInteger const kChainedDroplistViewTag = 111;
         case EChainedDroplistViewDirectionNone:
             break;
     }
-    NSUInteger rowCnt = self.dataSource.cellDatas.count > 5 ? 5 : self.dataSource.cellDatas.count;
+    NSUInteger rowCnt = self.datas.count > 5 ? 5 : self.datas.count;
     CGFloat tableHeight = self.cellHeight * rowCnt;
     if (visibleHeight >= tableHeight) {
         return rowCnt;
@@ -292,9 +295,9 @@ NSInteger const kChainedDroplistViewTag = 111;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSAssert(indexPath.row < self.dataSource.cellDatas.count,
+    NSAssert(indexPath.row < self.datas.count,
              @"Select row[%@] beyonds the max count[%@] of datas",
-             @(indexPath.row), @(self.dataSource.cellDatas.count));
+             @(indexPath.row), @(self.datas.count));
     
     NSInteger index = indexPath.row;
     [self dismissDroplistWithResult:index];

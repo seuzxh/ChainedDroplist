@@ -9,7 +9,6 @@
 #import "TestChainedDroplistViewController.h"
 
 #import "ChainedDroplistView.h"
-#import "ChainedDroplistDataSource.h"
 #import "ChainedDroplistBaseCell.h"
 #import "ChainedDroplistBaseModel.h"
 #import "ChainedDroplistDef.h"
@@ -77,7 +76,7 @@
         droplist.baseView = baseView;
         droplist.rotationView = icon;
         /* droplist.cellHeight = 60; use default height */
-        droplist.dataSource = [self createDataSourceWithDatas:[self createTestDatas]];
+        droplist.datas = [self createTestDatas];
     }] registCustomerCellsWithConfig:^(UITableView *tableView) {
         [tableView registerClass:ChainedDroplistBaseCell.class forCellReuseIdentifier:kChainedDroplistBaseCellIdentifier];
     }] show] processAfterSelected:^(NSInteger index) {
@@ -94,7 +93,7 @@
         droplist.baseView = baseView;
         droplist.rotationView = nil;
         droplist.cellHeight = 60; /*  Customer cell height */
-        droplist.dataSource = [self createDataSourceWithDatas:[self createTestCustomerDatas]];
+        droplist.datas = [self createTestCustomerDatas];
     }] registCustomerCellsWithConfig:^(UITableView *tableView) {
         //  Regist customer cells
         [tableView registerClass:ChainedDroplistCustomerCell.class forCellReuseIdentifier:kChainedDroplistCustomerCellIdentifier];
@@ -234,13 +233,6 @@
     return tmp;
 }
 
-- (ChainedDroplistDataSource *)createDataSourceWithDatas:(NSArray <id <ChainedDroplistModelProtocol> > *)datas
-{
-    ChainedDroplistDataSource *dataSource = ChainedDroplistDataSource.new;
-    dataSource.cellDatas = datas;
-
-    return dataSource;
-}
 
 #pragma mark - UI
 

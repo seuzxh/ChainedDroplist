@@ -12,6 +12,8 @@
 
 @interface ChainedDroplistDataSource()
 
+@property (nonatomic, strong) NSArray <id<ChainedDroplistModelProtocol>> *cellDatas;
+
 @end
 
 @implementation ChainedDroplistDataSource
@@ -19,6 +21,16 @@
 - (void)dealloc
 {
     CDLebugLog(@"[%@] dealloc", self);
+}
+
+- (instancetype)initWithDatas:(NSArray <id<ChainedDroplistModelProtocol>> *)datas
+{
+    self = [super init];
+    if (self) {
+        self.cellDatas = datas;
+    }
+    
+    return self;
 }
 
 #pragma mark - UITableViewDataSource
