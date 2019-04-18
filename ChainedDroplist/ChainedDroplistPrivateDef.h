@@ -2,7 +2,7 @@
 //  ChainedDroplistPrivateDef.h
 //  ChainedDroplist
 //
-//  Created by zhaoxianghui on 2019/4/17.
+//  Created by seuzxh@163.com on 2019/4/17.
 //  All private defs
 
 #ifndef ChainedDroplistPrivateDef_h

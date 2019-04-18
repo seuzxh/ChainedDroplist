@@ -6,12 +6,11 @@
 //
 
 #import "ChainedDroplistBaseModel.h"
-#import "ChainedDroplistDef.h"
 
 @implementation ChainedDroplistBaseModel
 
 #pragma mark - ChainedDroplistModelProtocol
-@synthesize strCellIdentifier, isCellSelected, needBottomSepline;
+@synthesize strCellIdentifier, needBottomSepline;
 - (NSString *)strCellIdentifier
 {
     return kChainedDroplistBaseCellIdentifier;

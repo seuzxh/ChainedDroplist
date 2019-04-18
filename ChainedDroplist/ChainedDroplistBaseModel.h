@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@protocol ChainedDroplistModelProtocol;
+#import "ChainedDroplistDef.h"
 
 FOUNDATION_EXPORT NSString *const kChainedDroplistBaseCellIdentifier;
 

@@ -53,7 +53,8 @@
  初始化方法
 
  @param config 用于配置以上定义的 public properties
- @return droplist 实例
+ 
+ @return Droplist instance used for chained program
  */
 - (instancetype)initWithConfig:(void(^)(ChainedDroplistView *droplist))config;
 
@@ -61,15 +62,30 @@
  用于绑定自定义的 UITableViewCell
 
  @param config 提供给用户绑定自定义 cell 的 block
- @return 用于链式编程的 self
+ 
+ @return Droplist instance used for chained program
  */
 - (instancetype)registCustomerCellsWithConfig:(void(^)(UITableView *tableView))config;
 
 /**
- 展示 droplist，该方法中才会设置 tableview datasource&delegate
+ Show droplist with animation
+ In this method, the datasource&delegate of UITableView will be set
 
- @return 用于异步编程的 BFTask
+ @return Droplist instance used for chained program
  */
-- (BFTask *)show;
+- (instancetype)show;
+
+/**
+ Dismiss dorplist
+ */
+- (void)dismiss;
+
+/**
+ Add the block when user click one cell
+ The blk won't be called if the usr tap the other place to dismiss the droplist
+ 
+ @param blk Procession after usr select one cell
+ */
+- (void)processAfterSelected:(void(^)(NSInteger index))blk;
 
 @end

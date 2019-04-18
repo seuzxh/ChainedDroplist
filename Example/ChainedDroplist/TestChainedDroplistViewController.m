@@ -14,6 +14,9 @@
 #import "ChainedDroplistBaseModel.h"
 #import "ChainedDroplistDef.h"
 
+#import "ChainedDroplistCustomerCell.h"
+#import "ChainedDroplistCustomerModel.h"
+
 #import "Bolts.h"
 #import "Masonry.h"
 
@@ -58,28 +61,46 @@
 
 - (void)tapBtnInHostView:(UIButton *)btn
 {
-    UIView *hostView = btn.superview == self.topHostView ? self.topHostView : self.bottomHostView;
-    [self showDroplist:btn icon:nil hostView:hostView];
+    BOOL isTopHostView = btn.superview == self.topHostView;
+    if (isTopHostView) {
+        [self showDroplist:btn icon:nil hostView:self.topHostView];
+    } else {
+        [self showCustomerDroplsit:btn hostView:self.bottomHostView];
+    }
     
 }
 
 - (void)showDroplist:(UIView *)baseView icon:(UIView *)icon hostView:(UIView *)hostView
 {
     [[[[[ChainedDroplistView alloc] initWithConfig:^(ChainedDroplistView *droplist) {
-        droplist.hostView = self.view;
+        droplist.hostView = hostView;
         droplist.baseView = baseView;
         droplist.rotationView = icon;
         /* droplist.cellHeight = 60; use default height */
         droplist.dataSource = [self createDataSourceWithDatas:[self createTestDatas]];
     }] registCustomerCellsWithConfig:^(UITableView *tableView) {
         [tableView registerClass:ChainedDroplistBaseCell.class forCellReuseIdentifier:kChainedDroplistBaseCellIdentifier];
-    }] show] continueWithSuccessBlock:^id _Nullable(BFTask * _Nonnull tSelIndex) {
-        NSInteger selectIndex = [tSelIndex.result integerValue];
-        NSLog(@"U select index[%@]", @(selectIndex));
-        
-        return nil;
+    }] show] processAfterSelected:^(NSInteger index) {
+        NSLog(@"U have selected index -> [%@]", @(index));
     }];
+     
     
+}
+
+- (void)showCustomerDroplsit:(UIView *)baseView hostView:(UIView *)hostView
+{
+    [[[[[ChainedDroplistView alloc] initWithConfig:^(ChainedDroplistView *droplist) {
+        droplist.hostView = hostView;
+        droplist.baseView = baseView;
+        droplist.rotationView = nil;
+        droplist.cellHeight = 60; /*  Customer cell height */
+        droplist.dataSource = [self createDataSourceWithDatas:[self createTestCustomerDatas]];
+    }] registCustomerCellsWithConfig:^(UITableView *tableView) {
+        //  Regist customer cells
+        [tableView registerClass:ChainedDroplistCustomerCell.class forCellReuseIdentifier:kChainedDroplistCustomerCellIdentifier];
+    }] show] processAfterSelected:^(NSInteger index) {
+        NSLog(@"U have selected index -> [%@]", @(index));
+    }];
 }
 
 
@@ -135,10 +156,10 @@
         _topHostView.backgroundColor = [UIColor whiteColor];
         
         UIButton *subBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        subBtn.backgroundColor = [UIColor blueColor];
+        subBtn.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.5];
         [subBtn setTitle:@"Droplist will auto adjust visible cell count" forState:(UIControlStateNormal)];
-        [subBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
-        subBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        [subBtn setTitleColor:UIColor.darkTextColor forState:UIControlStateNormal];
+        subBtn.titleLabel.font = [UIFont systemFontOfSize:16];
         /*
          in this case you will see if the space between hostView&baseView is less than 5 cells' height, the droplist will decrease the visible quantity automatically until the cells can be shown in the space between
          */
@@ -162,7 +183,23 @@
         _bottomHostView = UIView.new;
         _bottomHostView.backgroundColor = [UIColor whiteColor];
         
-        // TODO: Add custom cells
+        UIButton *subBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        subBtn.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.4];
+        [subBtn setTitle:@"Droplist will use customer cells" forState:(UIControlStateNormal)];
+        [subBtn setTitleColor:UIColor.darkTextColor forState:UIControlStateNormal];
+        subBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+        /*
+         in this case you will see if the space between hostView&baseView is less than 5 cells' height, the droplist will decrease the visible quantity automatically until the cells can be shown in the space between
+         */
+        [subBtn addTarget:self action:@selector(tapBtnInHostView:) forControlEvents:(UIControlEventTouchUpInside)];
+        
+        [_bottomHostView addSubview:subBtn];
+        [subBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(_bottomHostView);
+            make.height.mas_equalTo(60);
+            make.width.mas_equalTo(_bottomHostView).offset(-10);
+            make.bottom.mas_equalTo(_bottomHostView).offset(-30);
+        }];
     }
     return _bottomHostView;
 }
@@ -175,6 +212,22 @@
         ChainedDroplistBaseModel *model = [ChainedDroplistBaseModel new];
         model.needBottomSepline = i != 9;
         model.strTitle = [NSString stringWithFormat:@"test cell title [%@]", @(i)];
+        [tmp addObject:model];
+    }
+    
+    return tmp;
+}
+
+- (NSArray <id <ChainedDroplistModelProtocol> > *)createTestCustomerDatas
+{
+    NSMutableArray *tmp = @[].mutableCopy;
+    
+    for (int i = 0; i < 10; i++) {
+        ChainedDroplistCustomerModel *model = [ChainedDroplistCustomerModel new];
+        model.needBottomSepline = i != 9;
+        model.strTitle = [NSString stringWithFormat:@"test cell title [%@]", @(i)];
+        model.customerTitle = @"Customer cell title";
+        model.customerDetail = [NSString stringWithFormat:@"Detail info with index [%@]", @(i)];
         [tmp addObject:model];
     }
     
