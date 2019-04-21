@@ -8,14 +8,9 @@
 
 #import "TestChainedDroplistViewController.h"
 
-#import "ChainedDroplistView.h"
-#import "ChainedDroplistBaseCell.h"
-#import "ChainedDroplistBaseModel.h"
-#import "ChainedDroplistDef.h"
-
+@import ChainedDroplist;
 #import "ChainedDroplistCustomerCell.h"
 #import "ChainedDroplistCustomerModel.h"
-
 #import "Masonry.h"
 
 

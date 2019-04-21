@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		14F449EF125E41A9A7CC432E /* libPods-ChainedDroplist_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B74BD2BAE541FF5F2570964 /* libPods-ChainedDroplist_Example.a */; };
+		040C3EBE7BCE2F3F563F9BE6 /* Pods_ChainedDroplist_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B291DBB5FD3A9D5278FCCFE /* Pods_ChainedDroplist_Example.framework */; };
 		4541EC86226778DA00772E86 /* droplistTestIcon_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4541EC82226778DA00772E86 /* droplistTestIcon_up@2x.png */; };
 		4541EC87226778DA00772E86 /* droplistTestIcon_up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4541EC83226778DA00772E86 /* droplistTestIcon_up@3x.png */; };
 		4541EC88226778DA00772E86 /* droplistTestIcon_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4541EC84226778DA00772E86 /* droplistTestIcon_down@2x.png */; };
@@ -27,9 +27,9 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		646AD2B1E5EE7CA124111873 /* Pods_ChainedDroplist_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4323B1EACA986A8AF9611B95 /* Pods_ChainedDroplist_Tests.framework */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		B5B7428BC1989C7E0EA76E7D /* libPods-ChainedDroplist_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D8138D610078C1F152612CC /* libPods-ChainedDroplist_Tests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +44,7 @@
 
 /* Begin PBXFileReference section */
 		0E55A28503F37227E1A5F86A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		1D8138D610078C1F152612CC /* libPods-ChainedDroplist_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChainedDroplist_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4323B1EACA986A8AF9611B95 /* Pods_ChainedDroplist_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChainedDroplist_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		436A26C88731B7F8C98F8C69 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		4541EC82226778DA00772E86 /* droplistTestIcon_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "droplistTestIcon_up@2x.png"; sourceTree = "<group>"; };
 		4541EC83226778DA00772E86 /* droplistTestIcon_up@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "droplistTestIcon_up@3x.png"; sourceTree = "<group>"; };
@@ -54,7 +54,7 @@
 		45A0E7FD2268084C00F29DA3 /* ChainedDroplistCustomerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ChainedDroplistCustomerCell.m; path = "Customer Cells/ChainedDroplistCustomerCell.m"; sourceTree = "<group>"; };
 		45A0E7FF2268086400F29DA3 /* ChainedDroplistCustomerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ChainedDroplistCustomerModel.h; path = "Customer Cells/ChainedDroplistCustomerModel.h"; sourceTree = "<group>"; };
 		45A0E8002268086400F29DA3 /* ChainedDroplistCustomerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ChainedDroplistCustomerModel.m; path = "Customer Cells/ChainedDroplistCustomerModel.m"; sourceTree = "<group>"; };
-		5B74BD2BAE541FF5F2570964 /* libPods-ChainedDroplist_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChainedDroplist_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B291DBB5FD3A9D5278FCCFE /* Pods_ChainedDroplist_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChainedDroplist_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* ChainedDroplist_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChainedDroplist_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -91,7 +91,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				14F449EF125E41A9A7CC432E /* libPods-ChainedDroplist_Example.a in Frameworks */,
+				040C3EBE7BCE2F3F563F9BE6 /* Pods_ChainedDroplist_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +102,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				B5B7428BC1989C7E0EA76E7D /* libPods-ChainedDroplist_Tests.a in Frameworks */,
+				646AD2B1E5EE7CA124111873 /* Pods_ChainedDroplist_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,8 +159,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				5B74BD2BAE541FF5F2570964 /* libPods-ChainedDroplist_Example.a */,
-				1D8138D610078C1F152612CC /* libPods-ChainedDroplist_Tests.a */,
+				5B291DBB5FD3A9D5278FCCFE /* Pods_ChainedDroplist_Example.framework */,
+				4323B1EACA986A8AF9611B95 /* Pods_ChainedDroplist_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -237,6 +237,7 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
+				99369726A71C1CB68AFA65E0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -348,6 +349,30 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99369726A71C1CB68AFA65E0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChainedDroplist_Example/Pods-ChainedDroplist_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ChainedDroplist/ChainedDroplist.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChainedDroplist.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChainedDroplist_Example/Pods-ChainedDroplist_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BB30FDB98FE9014606F8E7D2 /* [CP] Check Pods Manifest.lock */ = {
