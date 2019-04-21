@@ -1,9 +1,7 @@
 # ChainedDroplist
 
 > 链式Droplist，提供了基本的 DataSource 和 Delegate 的封装
-
 > 尽量做到最大化的 Cell 扩展
-
 > 欢迎issues和PRs，帮助改善
 
 
