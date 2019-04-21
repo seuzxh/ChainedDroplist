@@ -12,6 +12,8 @@
 		4541EC87226778DA00772E86 /* droplistTestIcon_up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4541EC83226778DA00772E86 /* droplistTestIcon_up@3x.png */; };
 		4541EC88226778DA00772E86 /* droplistTestIcon_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4541EC84226778DA00772E86 /* droplistTestIcon_down@2x.png */; };
 		4541EC89226778DA00772E86 /* droplistTestIcon_down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4541EC85226778DA00772E86 /* droplistTestIcon_down@3x.png */; };
+		45A0E7FE2268084C00F29DA3 /* ChainedDroplistCustomerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A0E7FD2268084C00F29DA3 /* ChainedDroplistCustomerCell.m */; };
+		45A0E8012268086400F29DA3 /* ChainedDroplistCustomerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A0E8002268086400F29DA3 /* ChainedDroplistCustomerModel.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -48,6 +50,10 @@
 		4541EC83226778DA00772E86 /* droplistTestIcon_up@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "droplistTestIcon_up@3x.png"; sourceTree = "<group>"; };
 		4541EC84226778DA00772E86 /* droplistTestIcon_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "droplistTestIcon_down@2x.png"; sourceTree = "<group>"; };
 		4541EC85226778DA00772E86 /* droplistTestIcon_down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "droplistTestIcon_down@3x.png"; sourceTree = "<group>"; };
+		45A0E7FC2268084C00F29DA3 /* ChainedDroplistCustomerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ChainedDroplistCustomerCell.h; path = "Customer Cells/ChainedDroplistCustomerCell.h"; sourceTree = "<group>"; };
+		45A0E7FD2268084C00F29DA3 /* ChainedDroplistCustomerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ChainedDroplistCustomerCell.m; path = "Customer Cells/ChainedDroplistCustomerCell.m"; sourceTree = "<group>"; };
+		45A0E7FF2268086400F29DA3 /* ChainedDroplistCustomerModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ChainedDroplistCustomerModel.h; path = "Customer Cells/ChainedDroplistCustomerModel.h"; sourceTree = "<group>"; };
+		45A0E8002268086400F29DA3 /* ChainedDroplistCustomerModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ChainedDroplistCustomerModel.m; path = "Customer Cells/ChainedDroplistCustomerModel.m"; sourceTree = "<group>"; };
 		5B74BD2BAE541FF5F2570964 /* libPods-ChainedDroplist_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChainedDroplist_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* ChainedDroplist_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChainedDroplist_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -168,6 +174,10 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* TestChainedDroplistViewController.h */,
 				6003F5A6195388D20070C39A /* TestChainedDroplistViewController.m */,
+				45A0E7FC2268084C00F29DA3 /* ChainedDroplistCustomerCell.h */,
+				45A0E7FD2268084C00F29DA3 /* ChainedDroplistCustomerCell.m */,
+				45A0E7FF2268086400F29DA3 /* ChainedDroplistCustomerModel.h */,
+				45A0E8002268086400F29DA3 /* ChainedDroplistCustomerModel.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -371,7 +381,9 @@
 			files = (
 				6003F59E195388D20070C39A /* TestChainedDroplistAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* TestChainedDroplistViewController.m in Sources */,
+				45A0E8012268086400F29DA3 /* ChainedDroplistCustomerModel.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				45A0E7FE2268084C00F29DA3 /* ChainedDroplistCustomerCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

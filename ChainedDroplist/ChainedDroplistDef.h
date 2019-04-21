@@ -55,11 +55,6 @@ typedef NS_ENUM(NSUInteger, EChainedDroplistViewDirection) {
  */
 @property (nonatomic, assign) BOOL needBottomSepline;
 
-/**
- 当前cell是否被选中
- */
-@property (nonatomic, assign) BOOL isCellSelected;
-
 @end
 
 #endif /* ChainedDroplistDef_h */

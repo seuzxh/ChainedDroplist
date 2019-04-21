@@ -11,19 +11,19 @@
 #import "ChainedDroplistPrivateDef.h"
 #import "ChainedDroplistDef.h"
 
-#import "LRNotificationObserver+Owner.h"
 #import "Masonry.h"
-#import "Bolts.h"
 
 
 NSInteger const kChainedDroplistViewTag = 111;
 
-@interface ChainedDroplistView()<UITableViewDelegate, UIGestureRecognizerDelegate>
+@interface ChainedDroplistView()<UITableViewDelegate, UIGestureRecognizerDelegate>{
+    void(^_processBlk)(NSInteger index);
+}
 
 @property (nonatomic, strong) UIView *bottomShadowView;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) BFTaskCompletionSource *bfCompletionSource;
 
+@property (nonatomic, strong) ChainedDroplistDataSource *dataSource;
 
 @end
 
@@ -47,12 +47,12 @@ NSInteger const kChainedDroplistViewTag = 111;
             config(self);
         }
         
+        self.dataSource = [[ChainedDroplistDataSource alloc] initWithDatas:self.datas];
         if ( self.droplistDirection == EChainedDroplistViewDirectionNone ) {
             [self calculateDirection];
         }
         
         [self addTapGesture];
-        [self bindEnterBackgroundNortification];
         
         [self setupUI];
         [self setupConstraints];
@@ -71,7 +71,7 @@ NSInteger const kChainedDroplistViewTag = 111;
     return self;
 }
 
-- (BFTask *)show
+- (instancetype)show
 {
     if (!self.tableView.delegate) {
         /*
@@ -81,9 +81,9 @@ NSInteger const kChainedDroplistViewTag = 111;
         self.tableView.dataSource = self.dataSource;
     }
     
-    if (self.bfCompletionSource) { // 有可能会执行多次调用
-        [self.bfCompletionSource cancel];
-        self.bfCompletionSource = nil;
+    if (_processBlk) {
+        // it may be called multitimes
+        _processBlk = nil;
     }
     
     NSUInteger nRowCnt = [self calculateVisibleRows];
@@ -92,7 +92,6 @@ NSInteger const kChainedDroplistViewTag = 111;
         make.height.mas_equalTo(tableHeight);
     }];
     
-    self.bfCompletionSource = BFTaskCompletionSource.taskCompletionSource;
     [self bringSubviewToFront:self.tableView];
     [UIView animateWithDuration:0.3f
                      animations:^{
@@ -105,7 +104,19 @@ NSInteger const kChainedDroplistViewTag = 111;
                          self.bottomShadowView.hidden = NO;
                      }];
     
-    return  self.bfCompletionSource.task;
+    return  self;
+}
+
+- (void)processAfterSelected:(void(^)(NSInteger index))blk
+{
+    if (blk) {
+        _processBlk = [blk copy];
+    }
+}
+
+- (void)dismiss
+{
+    [self dismissDroplistWithResult:-1];
 }
 
 #pragma mark - UI
@@ -180,17 +191,7 @@ NSInteger const kChainedDroplistViewTag = 111;
     [self addGestureRecognizer:dismissTap];
 }
 
-- (void)bindEnterBackgroundNortification
-{
-    __weak __typeof(self) weakSelf = self;
-    [LRNotificationObserver observeName:UIApplicationDidEnterBackgroundNotification
-                                  owner:self
-                                  block:^(NSNotification *note) {
-        [weakSelf dismiss];
-    }];
-}
-
-- (void)dismissDroplistWithResult:(id)result
+- (void)dismissDroplistWithResult:(NSInteger)selIndex
 {
     [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(0);
@@ -211,13 +212,11 @@ NSInteger const kChainedDroplistViewTag = 111;
         }
         
     } completion:^(BOOL finished) {
-        if (result) {
-            [self.bfCompletionSource trySetResult:result];
+        if (selIndex >= 0) {
+            self->_processBlk ? self->_processBlk(selIndex) : nil;
         } else {
-            [self.bfCompletionSource trySetCancelled];
+            self->_processBlk = nil; // do nothing
         }
-        
-        self.bfCompletionSource = nil;
         
         [self removeFromSuperview];
     }];
@@ -246,7 +245,7 @@ NSInteger const kChainedDroplistViewTag = 111;
         case EChainedDroplistViewDirectionNone:
             break;
     }
-    NSUInteger rowCnt = self.dataSource.cellDatas.count > 5 ? 5 : self.dataSource.cellDatas.count;
+    NSUInteger rowCnt = self.datas.count > 5 ? 5 : self.datas.count;
     CGFloat tableHeight = self.cellHeight * rowCnt;
     if (visibleHeight >= tableHeight) {
         return rowCnt;
@@ -288,12 +287,6 @@ NSInteger const kChainedDroplistViewTag = 111;
     return YES;
 }
 
-- (void)dismiss
-{
-    [self dismissDroplistWithResult:nil];
-}
-
-
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -302,13 +295,12 @@ NSInteger const kChainedDroplistViewTag = 111;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSAssert(indexPath.row < self.dataSource.cellDatas.count,
+    NSAssert(indexPath.row < self.datas.count,
              @"Select row[%@] beyonds the max count[%@] of datas",
-             @(indexPath.row), @(self.dataSource.cellDatas.count));
+             @(indexPath.row), @(self.datas.count));
     
     NSInteger index = indexPath.row;
-    id selModel = self.dataSource.cellDatas[index];
-    [self dismissDroplistWithResult:selModel];
+    [self dismissDroplistWithResult:index];
 }
 
 #pragma mark - Lazy Load
