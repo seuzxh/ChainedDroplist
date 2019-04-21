@@ -16,7 +16,6 @@
 #import "ChainedDroplistCustomerCell.h"
 #import "ChainedDroplistCustomerModel.h"
 
-#import "Bolts.h"
 #import "Masonry.h"
 
 
@@ -75,7 +74,7 @@
         droplist.hostView = hostView;
         droplist.baseView = baseView;
         droplist.rotationView = icon;
-        /* droplist.cellHeight = 60; use default height */
+        droplist.cellHeight = 46; 
         droplist.datas = [self createTestDatas];
     }] registCustomerCellsWithConfig:^(UITableView *tableView) {
         [tableView registerClass:ChainedDroplistBaseCell.class forCellReuseIdentifier:kChainedDroplistBaseCellIdentifier];
@@ -152,7 +151,7 @@
 {
     if (!_topHostView) {
         _topHostView = [UIView new];
-        _topHostView.backgroundColor = [UIColor whiteColor];
+        _topHostView.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
         
         UIButton *subBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
         subBtn.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.5];
@@ -167,9 +166,9 @@
         [_topHostView addSubview:subBtn];
         [subBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(_topHostView);
-            make.height.mas_equalTo(60);
+            make.height.mas_equalTo(46);
             make.width.mas_equalTo(_topHostView).offset(-10);
-            make.top.mas_equalTo(_topHostView).offset(30);
+            make.top.mas_equalTo(_topHostView).offset(10);
         }];
     }
     
@@ -180,7 +179,7 @@
 {
     if (!_bottomHostView) {
         _bottomHostView = UIView.new;
-        _bottomHostView.backgroundColor = [UIColor whiteColor];
+        _bottomHostView.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.6];
         
         UIButton *subBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
         subBtn.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.4];
@@ -195,9 +194,9 @@
         [_bottomHostView addSubview:subBtn];
         [subBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(_bottomHostView);
-            make.height.mas_equalTo(60);
+            make.height.mas_equalTo(46);
             make.width.mas_equalTo(_bottomHostView).offset(-10);
-            make.bottom.mas_equalTo(_bottomHostView).offset(-30);
+            make.bottom.mas_equalTo(_bottomHostView).offset(-10);
         }];
     }
     return _bottomHostView;
@@ -259,7 +258,7 @@
     
     [self.topHostView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view);
-        make.top.mas_equalTo(self.topBtn.mas_bottom).offset(5);
+        make.top.mas_equalTo(self.topBtn.mas_bottom).offset(10);
         make.bottom.mas_equalTo(self.view.mas_centerY).offset(-5);
         make.width.mas_equalTo(self.view).offset(-10);
     }];
@@ -268,7 +267,7 @@
         make.width.mas_equalTo(self.view).offset(-10);
         make.centerX.mas_equalTo(self.view);
         make.top.mas_equalTo(self.view.mas_centerY).offset(5);
-        make.bottom.mas_equalTo(self.bottomBtn.mas_top).offset(-5);
+        make.bottom.mas_equalTo(self.bottomBtn.mas_top).offset(-10);
     }];
 }
 
