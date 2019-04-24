@@ -124,9 +124,6 @@
 4. 如果 上方、下方 空间均不足以展示**5行**，主动计算**最少可展示行数**并展示
 5. 通过继承 `ChainedDroplistBaseCell`、`ChainedDroplistBaseModel` 来实现自定义样式
 
-
-## Requirements
-
 ## Installation
 
 ChainedDroplist is available through [CocoaPods](https://cocoapods.org). To install
@@ -135,10 +132,6 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'ChainedDroplist'
 ```
-
-## Author
-
-seuzxh, zhaxianghui@htsc.com
 
 ## License
 
